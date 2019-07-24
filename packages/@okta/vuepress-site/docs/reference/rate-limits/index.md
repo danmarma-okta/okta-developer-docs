@@ -52,9 +52,14 @@ Note that limits for more specific endpoints override the limits for less specif
 | **Get System Log data:**<br>`/api/v1/events`                                                                 | 20               | 25               | 25      | 50         | shared with `/api/v1`               |
 | **Get session information:**<br>`/api/v1/sessions`                                                           | 100              | 300              | 300*    | 600*       | 750                |
 | **Create an organization:**<br>`/api/v1/orgs`                                                                | N/A              | N/A              | N/A     | 50         | 50                 |
-| **OAuth2 requests for Custom Authorization Servers:**<br>`/oauth2/{authorizationServerId}/v1`                | 300              | 600              | 600*    | 1200*      | 2000               |
-| **OAuth2 requests for the Org Authorization Server:**<br>`/oauth2/v1` except `/oauth2/v1/clients`            | 300              | 600              | 600*    | 1200*      | 2000               |
+| **OAuth2 requests for Custom Authorization Servers:**<br>`/oauth2/{authorizationServerId}/v1` except `/oauth2/{authorizationServerId}/v1/keys`, `/oauth2/{authorizationServerId}/.well-known/openid-configuration` and `/oauth2/{authorizationServerId}/.well-known/oauth-authorization-server`              | 300              | 600              | 600*    | 1200*      | 2000               |
+| **Get the signing keys of Custom Authorization Servers:**<br>`/oauth2/{authorizationServerId}/v1/keys`          | 600              | 900              | 900    | 1800      | 2700               |
+| **Get the OIDC metadata of Custom Authorization Servers:**<br>`/oauth2/{authorizationServerId}/.well-known/openid-configuration`          | 300              | 600              | 600    | 1200      | 1200               |
+| **Get the OAuth2 metadata of Custom Authorization Servers:**<br>`/oauth2/{authorizationServerId}/.well-known/oauth-authorization-server`          | 300              | 600              | 600    | 1200      | 1200               |
+| **OAuth2 requests for the Org Authorization Server:**<br>`/oauth2/v1` except `/oauth2/v1/clients` and `/oauth2/v1/keys`            | 300              | 600              | 600*    | 1200*      | 2000               |
 | **OAuth2 client configuration requests:**<br>`/oauth2/v1/clients`                                            | 25               | 50               | 50      | 100        | 100                |
+| **Get the signing keys of the Org Authorization Server:**<br>`/oauth2/v1/keys`          | 600              | 900              | 900    | 1800      | 2700               |
+| **Get the OIDC metadata of the Org Authorization Server:**<br>`/.well-known/openid-configuration`          | 300              | 600              | 600    | 1200      | 1200               |
 | **All other OAuth2 requests:**<br>`/oauth2`                                                                  | 100              | 300              | 300     | 600        | 600                |
 | **Most other API actions:**<br>`/api/v1`                                                                         | 100              | 300              | 300*    | 600*       | 1200               |
 
