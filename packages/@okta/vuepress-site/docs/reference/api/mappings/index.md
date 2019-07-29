@@ -5,7 +5,7 @@ category: management
 
 # Mappings API
 
-The Okta Mappings API provides operations to manage the mapping of properties between an *Okta User's* and an *App User's*
+The Okta Mappings API provides operations to manage the mapping of properties between an Okta User's and an App User's
 [Profile Properties](/docs/reference/api/users/#profile-object) using [Expression Lanugage](/docs/reference/okta-expression-language).
 More information on *Okta User* and *App User* Profiles can be found in
 Okta's [Universal Directory](https://help.okta.com/en/prod/Content/Topics/Directory/About_Universal_Directory.htm).
@@ -21,16 +21,16 @@ Explore the Mappings API: [![Run in Postman](https://run.pstmn.io/button.svg)](h
 <ApiOperation method="get" url="/api/v1/mappings" />
 
 Enumerates [Profile Mappings](#profile-mapping-model) in your organization with [pagination](/docs/reference/api-overview/#pagination).
-A subset of [Profile Mapping(s)](#profile-mapping-model) can be returned that match a supported sourceId and/or targetId.
+A subset of [Profile Mapping(s)](#profile-mapping-model) can be returned that match a supported `sourceId` and/or `targetId`.
 
 ##### Request Parameters
 
 | Parameter     | Description                                                                                                                                                | Param Type | DataType | Required | Default |
 | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | -------- | -------- | ------- |
-| sourceId      | UserType or App Instance `id` that acts as the source of expressions in a mapping. If included, all mappings returned will have this as their source:id    | Query      | String   | FALSE    |         |
-| targetId      | UserType or App Instance `id` that acts as the target of expressions in a mapping. If included, all mappings returned will have this as their target:id    | Query      | String   | FALSE    |         |
+| sourceId      | UserType or App Instance `id` that acts as the source of expressions in a mapping. If included, all mappings returned will have this as their source:id    | Query      | String   | FALSE    | N/A     |
+| targetId      | UserType or App Instance `id` that acts as the target of expressions in a mapping. If included, all mappings returned will have this as their target:id    | Query      | String   | FALSE    | N/A     |
 | limit         | Specifies the number of results per page (maximum 200)                                                                                                     | Query      | Number   | FALSE    | 20      |
-| after         | mapping `id` that specifies the pagination cursor for the next page of mappings                                                                            | Query      | String   | FALSE    |         |
+| after         | mapping `id` that specifies the pagination cursor for the next page of mappings                                                                            | Query      | String   | FALSE    | N/A     |
 
 The results are [paginated](/docs/reference/api-overview/#pagination) according to the `limit` parameter.
 If there are multiple pages of results, the Link header contains a `next` link that should be treated as an opaque value (follow it, don't parse it).
@@ -46,7 +46,7 @@ curl -v -X GET \
 -H "Accept: application/json" \
 -H "Content-Type: application/json" \
 -H "Authorization: SSWS ${api_token}" \
-"https://${org}.okta.com/api/v1/mappings?sourceId=defaultUserTypeId"
+"https://{yourOktaDomain}/api/v1/mappings?sourceId=${sourceId}"
 ```
 
 ##### Response Example
@@ -54,70 +54,70 @@ curl -v -X GET \
 ```json
 [
     {
-        "id": "firstMapId",
+        "id": "prm1k47ghydIQOTBW0g4",
         "source": {
-            "id": "defaultUserTypeId",
-            "name": "default",
+            "id": "${sourceId}",
+            "name": "user",
             "type": "user",
             "_links": {
                 "self": {
-                    "href": "https://${org}.okta.com/api/v1/meta/types/user/defaultUserTypeId"
+                    "href": "https://{yourOktaDomain}/api/v1/meta/types/user/otysbePhQ3yqt4cVv0g3"
                 },
                 "schema": {
-                    "href": "https://${org}.okta.com/api/v1/meta/schemas/user/defaultSchemaId"
+                    "href": "https://{yourOktaDomain}/api/v1/meta/schemas/user/oscsbePhQ3yqt4cVv0g3"
                 }
             }
         },
         "target": {
-            "id": "sampleAppId",
-            "name": "sample_app",
+            "id": "0oa1xz9cb7yt5SsZV0g4",
+            "name": "zendesk",
             "type": "appuser",
             "_links": {
                 "self": {
-                    "href": "https://${org}.okta.com/api/v1/apps/sampleAppId"
+                    "href": "https://{yourOktaDomain}/api/v1/apps/0oa1xz9cb7yt5SsZV0g4"
                 },
                 "schema": {
-                    "href": "https://${org}.okta.com/api/v1/meta/schemas/apps/sampleAppId/default"
+                    "href": "https://{yourOktaDomain}/api/v1/meta/schemas/apps/0oa1xz9cb7yt5SsZV0g4/default"
                 }
             }
         },
         "_links": {
             "self": {
-                "href": "https://${org}.okta.com/api/v1/mappings/firstMapId"
+                "href": "https://{yourOktaDomain}/api/v1/mappings/prm1k47ghydIQOTBW0g4"
             }
         }
     },
     {
-        "id": "secondMapId",
+        "id": "prm1k48weFSOnEUnw0g4",
         "source": {
-            "id": "defaultUserTypeId",
-            "name": "default",
+            "id": "${sourceId}",
+            "name": "user",
             "type": "user",
             "_links": {
                 "self": {
-                    "href": "https://${org}.okta.com/api/v1/meta/types/user/defaultUserTypeId"
+                    "href": "https://{yourOktaDomain}/api/v1/meta/types/user/otysbePhQ3yqt4cVv0g3"
                 },
                 "schema": {
-                    "href": "https://${org}.okta.com/api/v1/meta/schemas/user/defaultSchemaId"
+                    "href": "https://{yourOktaDomain}/api/v1/meta/schemas/user/oscsbePhQ3yqt4cVv0g3"
                 }
             }
         },
         "target": {
-            "id": "sampleAppTwoId",
-            "name": "sample_app_two",
+            "id": "0oa1ycesCAeQrbO3s0g4",
+            "name": "sevenoffice",
             "type": "appuser",
             "_links": {
                 "self": {
-                    "href": "https://${org}.okta.com/api/v1/apps/sampleAppTwoId"
+                    "href": "https://{yourOktaDomain}/api/v1/apps/0oa1ycesCAeQrbO3s0g4"
                 },
                 "schema": {
-                    "href": "https://${org}.okta.com/api/v1/meta/schemas/apps/sampleAppTwoId/default"
+                    "href": "https://{yourOktaDomain}/api/v1/meta/schemas/apps/0oa1ycesCAeQrbO3s0g4/default"
                 }
             }
         },
         "_links": {
             "self": {
-                "href": "https://${org}.okta.com/api/v1/mappings/secondMapId"
+                "href": "https://{yourOktaDomain}/api/v1/mappings/prm1k48weFSOnEUnw0g4"
             }
         }
     }
@@ -134,7 +134,7 @@ Fetches a single [Profile Mapping](#profile-mapping-model) referenced by its id
 
 | Parameter     | Description                           | Param Type | DataType | Required | Default |
 | ------------- | ------------------------------------- | ---------- | -------- | -------- | ------- |
-| mappingId     | unique identifier for Profile Mapping | URL        | String   | TRUE     |         |
+| mappingId     | unique identifier for Profile Mapping | URL        | String   | TRUE     | N/A     |
 
 ##### Response Parameters
 
@@ -147,7 +147,7 @@ curl -v -X GET \
 -H "Accept: application/json" \
 -H "Content-Type: application/json" \
 -H "Authorization: SSWS ${api_token}" \
-"https://${org}.okta.com/api/v1/mappings/${mappingId}"
+"https://{yourOktaDomain}/api/v1/mappings/${mappingId}"
 ```
 
 ##### Response Example
@@ -156,28 +156,28 @@ curl -v -X GET \
 {
     "id": "${mappingId}",
     "source": {
-        "id": "aUserTypeId",
-        "name": "userTypeOne",
+        "id": "otysbePhQ3yqt4cVv0g3",
+        "name": "user",
         "type": "user",
         "_links": {
             "self": {
-                "href": "https://${org}.okta.com/api/v1/meta/types/user/aUserTypeId"
+                "href": "https://{yourOktaDomain}/api/v1/meta/types/user/otysbePhQ3yqt4cVv0g3"
             },
             "schema": {
-                "href": "https://${org}.okta.com/api/v1/meta/schemas/user/aSchemaId"
+                "href": "https://{yourOktaDomain}/api/v1/meta/schemas/user/oscsbePhQ3yqt4cVv0g3"
             }
         }
     },
     "target": {
-        "id": "sampleAppId",
-        "name": "sample_app",
+        "id": "0oa1qmn4LZQQEH0wZ0g4",
+        "name": "okta_org2org",
         "type": "appuser",
         "_links": {
             "self": {
-                "href": "https://${org}.okta.com/api/v1/apps/sampleAppId"
+                "href": "https://{yourOktaDomain}/api/v1/apps/0oa1qmn4LZQQEH0wZ0g4"
             },
             "schema": {
-                "href": "https://${org}.okta.com/api/v1/meta/schemas/apps/sampleAppId/default"
+                "href": "https://{yourOktaDomain}/api/v1/meta/schemas/apps/0oa1qmn4LZQQEH0wZ0g4/default"
             }
         }
     },
@@ -193,7 +193,7 @@ curl -v -X GET \
     },
     "_links": {
         "self": {
-            "href": "https://${org}.okta.com/api/v1/mappings/${mappingId}"
+            "href": "https://{yourOktaDomain}/api/v1/mappings/${mappingId}"
         }
     }
 }
@@ -213,7 +213,7 @@ Updates an existing [Profile Mapping](#profile-mapping-model) by adding, updatin
 
 | Parameter     | Description                           | Param Type | DataType | Required | Default |
 | ------------- | ------------------------------------- | ---------- | -------- | -------- | ------- |
-| mappingId     | unique identifier for Profile Mapping | URL        | String   | TRUE     |         |
+| mappingId     | unique identifier for Profile Mapping | URL        | String   | TRUE     | N/A     |
 
 ##### Response Parameters
 
@@ -241,7 +241,7 @@ curl -v -X POST \
             "pushStatus": "PUSH"
         }
     }
-}' "https://${org}.okta.com/api/v1/mappings/${mappingId}"
+}' "https://{yourOktaDomain}/api/v1/mappings/${mappingId}"
 ```
 
 ##### Response Example
@@ -250,28 +250,28 @@ curl -v -X POST \
 {
     "id": "${mappingId}",
     "source": {
-        "id": "aUserTypeId",
-        "name": "userTypeOne",
+        "id": "otysbePhQ3yqt4cVv0g3",
+        "name": "user",
         "type": "user",
         "_links": {
             "self": {
-                "href": "https://${org}.okta.com/api/v1/meta/types/user/aUserTypeId"
+                "href": "https://{yourOktaDomain}/api/v1/meta/types/user/otysbePhQ3yqt4cVv0g3"
             },
             "schema": {
-                "href": "https://${org}.okta.com/api/v1/meta/schemas/user/aSchemaId"
+                "href": "https://{yourOktaDomain}/api/v1/meta/schemas/user/oscsbePhQ3yqt4cVv0g3"
             }
         }
     },
     "target": {
-        "id": "sampleAppId",
-        "name": "sample_app",
+        "id": "0oa1qmn4LZQQEH0wZ0g4",
+        "name": "okta_org2org",
         "type": "appuser",
         "_links": {
             "self": {
-                "href": "https://${org}.okta.com/api/v1/apps/sampleAppId"
+                "href": "https://{yourOktaDomain}/api/v1/apps/0oa1qmn4LZQQEH0wZ0g4"
             },
             "schema": {
-                "href": "https://${org}.okta.com/api/v1/meta/schemas/apps/sampleAppId/default"
+                "href": "https://{yourOktaDomain}/api/v1/meta/schemas/apps/0oa1qmn4LZQQEH0wZ0g4/default"
             }
         }
     },
@@ -287,7 +287,7 @@ curl -v -X POST \
     },
     "_links": {
         "self": {
-            "href": "https://${org}.okta.com/api/v1/mappings/${mappingId}"
+            "href": "https://{yourOktaDomain}/api/v1/mappings/${mappingId}"
         }
     }
 }
@@ -311,7 +311,7 @@ curl -v -X POST \
             "pushStatus": "DONT_PUSH"
         }
     }
-}' "https://${org}.okta.com/api/v1/mappings/${mappingId}"
+}' "https://{yourOktaDomain}/api/v1/mappings/${mappingId}"
 ```
 
 ##### Response Example
@@ -320,28 +320,28 @@ curl -v -X POST \
 {
     "id": "${mappingId}",
     "source": {
-        "id": "aUserTypeId",
-        "name": "userTypeOne",
+        "id": "otysbePhQ3yqt4cVv0g3",
+        "name": "user",
         "type": "user",
         "_links": {
             "self": {
-                "href": "https://${org}.okta.com/api/v1/meta/types/user/aUserTypeId"
+                "href": "https://{yourOktaDomain}/api/v1/meta/types/user/otysbePhQ3yqt4cVv0g3"
             },
             "schema": {
-                "href": "https://${org}.okta.com/api/v1/meta/schemas/user/aSchemaId"
+                "href": "https://{yourOktaDomain}/api/v1/meta/schemas/user/oscsbePhQ3yqt4cVv0g3"
             }
         }
     },
     "target": {
-        "id": "sampleAppId",
-        "name": "sample_app",
+        "id": "0oa1qmn4LZQQEH0wZ0g4",
+        "name": "okta_org2org",
         "type": "appuser",
         "_links": {
             "self": {
-                "href": "https://${org}.okta.com/api/v1/apps/sampleAppId"
+                "href": "https://{yourOktaDomain}/api/v1/apps/0oa1qmn4LZQQEH0wZ0g4"
             },
             "schema": {
-                "href": "https://${org}.okta.com/api/v1/meta/schemas/apps/sampleAppId/default"
+                "href": "https://{yourOktaDomain}/api/v1/meta/schemas/apps/0oa1qmn4LZQQEH0wZ0g4/default"
             }
         }
     },
@@ -357,7 +357,7 @@ curl -v -X POST \
     },
     "_links": {
         "self": {
-            "href": "https://${org}.okta.com/api/v1/mappings/${mappingId}"
+            "href": "https://{yourOktaDomain}/api/v1/mappings/${mappingId}"
         }
     }
 }
@@ -378,7 +378,7 @@ curl -v -X POST \
     "properties": {
         "nickName": null
     }
-}' "https://${org}.okta.com/api/v1/mappings/${mappingId}"
+}' "https://{yourOktaDomain}/api/v1/mappings/${mappingId}"
 ```
 
 ##### Response Example
@@ -387,28 +387,28 @@ curl -v -X POST \
 {
     "id": "${mappingId}",
     "source": {
-        "id": "aUserTypeId",
-        "name": "userTypeOne",
+        "id": "otysbePhQ3yqt4cVv0g3",
+        "name": "user",
         "type": "user",
         "_links": {
             "self": {
-                "href": "https://${org}.okta.com/api/v1/meta/types/user/aUserTypeId"
+                "href": "https://{yourOktaDomain}/api/v1/meta/types/user/otysbePhQ3yqt4cVv0g3"
             },
             "schema": {
-                "href": "https://${org}.okta.com/api/v1/meta/schemas/user/aSchemaId"
+                "href": "https://{yourOktaDomain}/api/v1/meta/schemas/user/oscsbePhQ3yqt4cVv0g3"
             }
         }
     },
     "target": {
-        "id": "sampleAppId",
-        "name": "sample_app",
+        "id": "0oa1qmn4LZQQEH0wZ0g4",
+        "name": "okta_org2org",
         "type": "appuser",
         "_links": {
             "self": {
-                "href": "https://${org}.okta.com/api/v1/apps/sampleAppId"
+                "href": "https://{yourOktaDomain}/api/v1/apps/0oa1qmn4LZQQEH0wZ0g4"
             },
             "schema": {
-                "href": "https://${org}.okta.com/api/v1/meta/schemas/apps/sampleAppId/default"
+                "href": "https://{yourOktaDomain}/api/v1/meta/schemas/apps/0oa1qmn4LZQQEH0wZ0g4/default"
             }
         }
     },
@@ -420,7 +420,7 @@ curl -v -X POST \
     },
     "_links": {
         "self": {
-            "href": "https://${org}.okta.com/api/v1/mappings/${mappingId}"
+            "href": "https://{yourOktaDomain}/api/v1/mappings/${mappingId}"
         }
     }
 }
@@ -428,7 +428,7 @@ curl -v -X POST \
 
 ## Profile Mapping Model
 
-The Profile Mapping Model describes a mapping between an *Okta User's* and an *App User's* properties
+The Profile Mapping Model describes a mapping between an Okta User's and an App User's properties
 using [JSON Schema Draft 4](https://tools.ietf.org/html/draft-zyp-json-schema-04).
 
 > Same type source/target mappings are not supported by this API. Profile Mappings must either be Okta->App or App->Okta.
@@ -437,30 +437,30 @@ using [JSON Schema Draft 4](https://tools.ietf.org/html/draft-zyp-json-schema-04
 
 ```json
 {
-    "id": "${mappingId}",
+    "id": "prm1xzjkHwo8uG77c0g4",
     "source": {
-        "id": "sampleAppId",
-        "name": "sample_app",
+        "id": "0oa1qmn4LZQQEH0wZ0g4",
+        "name": "okta_org2org",
         "type": "appuser",
         "_links": {
             "self": {
-                "href": "https://${org}.okta.com/api/v1/apps/sampleAppId"
+                "href": "https://{yourOktaDomain}/api/v1/apps/0oa1qmn4LZQQEH0wZ0g4"
             },
             "schema": {
-                "href": "https://${org}.okta.com/api/v1/meta/schemas/apps/sampleAppId/default"
+                "href": "https://{yourOktaDomain}/api/v1/meta/schemas/apps/0oa1qmn4LZQQEH0wZ0g4/default"
             }
         }
     },
     "target": {
-        "id": "aUserTypeId",
-        "name": "userTypeOne",
+        "id": "otysbePhQ3yqt4cVv0g3",
+        "name": "user",
         "type": "user",
         "_links": {
             "self": {
-                "href": "https://${org}.okta.com/api/v1/meta/types/user/aUserTypeId"
+                "href": "https://{yourOktaDomain}/api/v1/meta/types/user/otysbePhQ3yqt4cVv0g3"
             },
             "schema": {
-                "href": "https://${org}.okta.com/api/v1/meta/schemas/user/aSchemaId"
+                "href": "https://{yourOktaDomain}/api/v1/meta/schemas/user/oscsbePhQ3yqt4cVv0g3"
             }
         }
     },
@@ -476,7 +476,7 @@ using [JSON Schema Draft 4](https://tools.ietf.org/html/draft-zyp-json-schema-04
     },
     "_links": {
         "self": {
-            "href": "https://${org}.okta.com/api/v1/mappings/${mappingId}"
+            "href": "https://{yourOktaDomain}/api/v1/mappings/prm1xzjkHwo8uG77c0g4"
         }
     }
 }
@@ -530,7 +530,7 @@ document with the following properties :
 | Property    | Description                                                                              | DataType                                                                     | Nullable | Unique | Readonly | Validation  |
 |:------------|:-----------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------|:---------|:-------|:---------|:------------|
 | expression  | combination or single source properties that will be mapped to the target property       | [Expression Language Object](/docs/reference/okta-expression-language/)      | FALSE    | FALSE  | FALSE    |             |
-| pushStatus  | whether to update target properties on user create & update or just on create            | `DONT_PUSH` or `PUSH`                                                            | FALSE    | FALSE  | FALSE    |             |
+| pushStatus  | whether to update target properties on user create & update or just on create            | `DONT_PUSH` or `PUSH`                                                        | FALSE    | FALSE  | FALSE    |             |
 
 > Having a pushStatus of `PUSH` will cause properties to be in the target to be updated on create and update. 
 Having a pushStatus of `DONT_PUSH` will cause properties to be in the target to be updated only on create.
