@@ -7,7 +7,7 @@ category: management
 
 The Okta Mappings API provides operations to manage the mapping of properties between an Okta User's and an App User's
 [Profile Properties](/docs/reference/api/users/#profile-object) using [Expression Lanugage](/docs/reference/okta-expression-language).
-More information on *Okta User* and *App User* Profiles can be found in
+More information on Okta User and App User Profiles can be found in
 Okta's [Universal Directory](https://help.okta.com/en/prod/Content/Topics/Directory/About_Universal_Directory.htm).
 
 ## Getting Started
