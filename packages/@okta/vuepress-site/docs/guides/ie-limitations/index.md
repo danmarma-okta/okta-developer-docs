@@ -62,7 +62,7 @@ The following Event Types are available only in the Identity Engine and can't be
 
 #### Sign-In Widget customization - feature flags
 
-**What Changed:** The following feature flags aren't supported:
+**What Changed:** The following feature flags aren't supported (Most features have moved to application policy context) :
 
 * `features.idpDiscovery`
 * `features.autoPush`
