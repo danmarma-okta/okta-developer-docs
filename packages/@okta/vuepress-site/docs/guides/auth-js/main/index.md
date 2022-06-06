@@ -48,7 +48,7 @@ To use the CDN, include this script in your target HTML page:
 
 ```html
 <!-- Latest CDN production Auth JS SDK-->
-<script src="https://global.oktacdn.com/okta-auth-js/6.1.0/okta-auth-js.polyfill.js" type="text/javascript"></script>
+<script src="https://global.oktacdn.com/okta-auth-js/6.1.0/okta-auth-js.min.js" type="text/javascript"></script>
 ```
 
 More information is available in the [Okta Auth JS SDK](https://github.com/okta/okta-auth-js/#okta-auth-javascript-sdk).
